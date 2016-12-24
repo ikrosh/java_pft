@@ -10,8 +10,5 @@ public class MyFirstProgram {
     System.out.println("Расстояние между точками " + p1.distance(p2));
 
   }
-
-
-
 }
 
