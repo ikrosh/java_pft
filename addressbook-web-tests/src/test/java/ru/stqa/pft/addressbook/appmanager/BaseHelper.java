@@ -3,9 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-/**
- * Created by 2iren_000 on 25.12.2016.
- */
+
 public class BaseHelper {
   protected FirefoxDriver wd;
 
