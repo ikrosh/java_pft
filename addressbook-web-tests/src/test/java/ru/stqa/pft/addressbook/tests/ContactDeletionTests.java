@@ -13,6 +13,4 @@ public class ContactDeletionTests extends TestBase {
         app.getNavigationHelper().goToContactPage();
     }
 
-
-
 }

@@ -4,10 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import static org.testng.Assert.assertTrue;
-
 public class ContactHelper extends BaseHelper {
-  private FirefoxDriver wd;
 
   public ContactHelper(FirefoxDriver wd) {
     super(wd);
@@ -41,4 +38,5 @@ public class ContactHelper extends BaseHelper {
   public void conformContactDeletion() {
     wd.switchTo().alert().accept();
   }
+
 }
