@@ -1,13 +1,13 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 public class BaseHelper {
-  protected WebDriver wd;
+  protected FirefoxDriver wd;
 
-  public BaseHelper(WebDriver wd) {
+  public BaseHelper(FirefoxDriver wd) {
     this.wd = wd;
   }
 
