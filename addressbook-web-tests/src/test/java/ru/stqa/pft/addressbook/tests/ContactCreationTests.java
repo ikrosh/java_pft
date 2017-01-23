@@ -10,7 +10,6 @@ public class ContactCreationTests extends TestBase {
   public void testContactCreation() {
     app.getNavigationHelper().goToHomePage();
     int before = app.getContactHelper().getContactCount();
-    System.out.println ("before=" + before);
     app.getContactHelper().initContactCreation();
     app.getContactHelper().fillContactForm(new ContactData("test1", "test2", "test4", "test@gmail.com", null, null));
     app.getContactHelper().submitContactCreation();
