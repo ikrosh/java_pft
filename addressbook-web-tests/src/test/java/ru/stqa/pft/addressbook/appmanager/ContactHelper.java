@@ -2,11 +2,8 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
-
-import java.util.List;
 
 public class ContactHelper extends BaseHelper {
 
@@ -35,24 +32,17 @@ public class ContactHelper extends BaseHelper {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContact() {
+    click(By.name("selected[]"));
   }
 
   public void conformContactDeletion() {
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification() {
-    //wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")).get(index).click();
-    //List<WebElement> cells = wd.findElements(By.cssSelector("tr.entry"));
+  public void initContactModification() { click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img")); }
 
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-  }
-
-  public void submitContactModification() {
-    click(By.name("update"));
-    //wd.findElements(By.name("update")).get(index).click();
+  public void submitContactModification() { click(By.name("update"));
   }
 
   public void createContact(ContactData contactData) {
