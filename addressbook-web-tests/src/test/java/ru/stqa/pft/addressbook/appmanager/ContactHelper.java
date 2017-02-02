@@ -32,8 +32,16 @@ public class ContactHelper extends BaseHelper {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    //wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[@type='checkbox']")).get(index).click();
+
+    wd.findElements(By.xpath("selected[]")).get(index).click();
+
+
+    //return wd.findElements(By.name("entry")).size();
+
+    //wd.findElements(By.name("entry")).get(index).findElement(By.xpath("td[8]/a/img")).click();
+    //click(By.name("selected[]"));
   }
 
   public void conformContactDeletion() {
