@@ -32,8 +32,10 @@ public class ContactHelper extends BaseHelper {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+
+    //click(By.name("selected[]"));
   }
 
   public void conformContactDeletion() {
@@ -42,7 +44,6 @@ public class ContactHelper extends BaseHelper {
 
   public void initContactModification(int index) {
     //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-    //wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[]/td[8]/a/img")).get(index).click();
     wd.findElements(By.name("entry")).get(index).findElement(By.xpath("td[8]/a/img")).click();
   }
 
