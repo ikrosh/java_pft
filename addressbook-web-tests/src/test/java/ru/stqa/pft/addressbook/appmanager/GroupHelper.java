@@ -21,8 +21,15 @@ public class GroupHelper extends BaseHelper {
   }
 
   public void submitGroupCreation() {
-
     click(By.name("submit"));
+  }
+
+  private void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    returnToGroupPage();
   }
 
   public void fillGroupForm(GroupData groupData) {
