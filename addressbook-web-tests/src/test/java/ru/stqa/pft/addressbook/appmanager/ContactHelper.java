@@ -61,4 +61,6 @@ public class ContactHelper extends BaseHelper {
   public int getContactCount() {
     return wd.findElements(By.name("entry")).size();
   }
+
+
 }

@@ -19,6 +19,7 @@ public class ContactDeletionTests extends TestBase {
     app.getNavigationHelper().goToContactPage();
     int after = app.getGroupHelper().getGroupCount();
     Assert.assertEquals(after, before - 1);
+
   }
 
 }
