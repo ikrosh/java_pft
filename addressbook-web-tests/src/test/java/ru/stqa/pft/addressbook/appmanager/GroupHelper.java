@@ -24,14 +24,6 @@ public class GroupHelper extends BaseHelper {
     click(By.name("submit"));
   }
 
-  public void create(GroupData group) {
-    initGroupCreation();
-    fillGroupForm(group);
-    submitGroupCreation();
-    returnToGroupPage();
-  }
-
-
   public void modify(int index, GroupData group) {
     selectGroup(index);
     initGroupModification();
@@ -91,9 +83,8 @@ public class GroupHelper extends BaseHelper {
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value")) ;
-      GroupData group = new GroupData(id, name, null, null);
-      groups.add(group);
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      groups.add(new GroupData().withId(id).withName(name));
     }
     return groups;
   }
