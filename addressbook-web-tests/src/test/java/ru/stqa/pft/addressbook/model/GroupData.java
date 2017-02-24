@@ -31,6 +31,10 @@ public class GroupData {
     return id;
   }
 
+  public String getHeader() {
+    return header;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -47,10 +51,6 @@ public class GroupData {
     int result = id;
     result = 31 * result + (name != null ? name.hashCode() : 0);
     return result;
-  }
-
-    public String getHeader() {
-    return header;
   }
 
   public String getName() {
