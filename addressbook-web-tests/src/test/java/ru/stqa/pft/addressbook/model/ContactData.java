@@ -8,6 +8,9 @@ public class ContactData {
   private final String home;
   private final String address;
 
+
+
+
   public ContactData(String firstname, String middlename, String lastname, String email, String home, String address) {
     this.firstname = firstname;
     this.middlename = middlename;
@@ -15,6 +18,8 @@ public class ContactData {
     this.email = email;
     this.home = home;
     this.address = address;
+
+
   }
 
   public String getFirstname() {
@@ -39,5 +44,34 @@ public class ContactData {
 
   public String getAddress() {
     return address;
+  }
+
+ 
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
+
+  @Override
+  public int hashCode() {
+    int result = firstname != null ? firstname.hashCode() : 0;
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    return result;
   }
 }
