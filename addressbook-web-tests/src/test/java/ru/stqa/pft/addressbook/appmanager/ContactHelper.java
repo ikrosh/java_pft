@@ -32,33 +32,24 @@ public class ContactHelper extends BaseHelper {
     click(By.linkText("add new"));
   }
 
-  public void deleteSelectedContact() {
-    click(By.xpath("//input[@value='Delete']"));
-  }
-
   public void selectContact(int index) {
-    //    if (!wd.findElement(By.name("selected[]")).isSelected()) {
-    //      click(By.name("selected[]")).get;
-    //
-      wd.findElements(By.name("selected[]")).get(index).click();
-
-    //wd.findElements(By.name("selected[]")).get(index).click();
-    //click(By.name("selected[]"));
-  }
-
-  public void conformContactDeletion() {
-    wd.switchTo().alert().accept();
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void initContactModification(int index) {
-    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-    //wd.findElements(By.name("entry")).get(index).findElement(By.xpath("td[8]/a/img")).click();
-    wd.findElements(By.name("selected[]")).get(index).click();
-    wd.switchTo().alert().accept();
+    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
   }
 
   public void submitContactModification() {
     click(By.name("update"));
+  }
+
+  public void deleteSelectedContact() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void conformContactDeletion() {
+    wd.switchTo().alert().accept();
   }
 
   public void createContact(ContactData contactData) {
@@ -68,10 +59,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public boolean isThereAContact() {
-    return isElementPresent(By.name("selected[]"));  }
-
-  public int getContactCount() {
-    return wd.findElements(By.name("entry")).size();
+    return isElementPresent(By.name("selected[]"));
   }
 
   public List<ContactData> getContactList() {
