@@ -10,16 +10,17 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-  private final String browser;
+
   WebDriver wd;
 
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private ContactHelper contactHelper;
+  private String browser;
 
   public ApplicationManager(String browser) {
-    this.browser = browser;
+        this.browser = browser;
   }
 
   public void init() {
@@ -47,7 +48,7 @@ public class ApplicationManager {
     return groupHelper;
   }
 
-  public ContactHelper getContactHelper() {
+  public ContactHelper contact() {
     return contactHelper;
   }
 

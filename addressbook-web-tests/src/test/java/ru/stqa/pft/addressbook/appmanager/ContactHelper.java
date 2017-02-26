@@ -33,11 +33,14 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+    if (!wd.findElements(By.name("selected[]")).get(index).isSelected()) {
+      wd.findElements(By.name("selected[]")).get(index).click();
+    }
   }
 
   public void initContactModification(int index) {
-    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+    wd.findElements(By.name("entry")).get(index).findElement(By.xpath("td[8]/a/img")).click();
+    //click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
   }
 
   public void submitContactModification() {
@@ -46,30 +49,38 @@ public class ContactHelper extends BaseHelper {
 
   public void deleteSelectedContact() {
     click(By.xpath("//input[@value='Delete']"));
+    //click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
   public void conformContactDeletion() {
     wd.switchTo().alert().accept();
   }
 
-  public void createContact(ContactData contactData) {
+  public void create(ContactData contactData) {
     initContactCreation();
     fillContactForm(contactData);
     submitContactCreation();
   }
 
-  public void modifyContact(int index, ContactData contact) {
+  public void modify(int index, ContactData contact) {
     initContactModification(index);
     fillContactForm (contact);
     submitContactModification();
     //goTo().goToContactPage();
   }
 
+  public void delete(int index) {
+    selectContact(index);
+    deleteSelectedContact();
+    conformContactDeletion();
+    //app.goTo().goToContactPage();
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> rows = wd.findElements(By.name("entry"));
         for (WebElement element : rows){
