@@ -35,9 +35,15 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void selectContact(int index) {
-    if (!wd.findElements(By.name("selected[]")).get(index).isSelected()) {
+    //if (!wd.findElements(By.name("selected[]")).get(index).isSelected()) {
       wd.findElements(By.name("selected[]")).get(index).click();
-    }
+    //}
+  }
+
+  public void selectContactById(int id) {
+    //if (!wd.findElement(By.cssSelector("input[value='" + id +"']")).isSelected()) {
+    wd.findElement(By.cssSelector("input[value='" + id +"']")).click();
+  // }
   }
 
   public void initContactModification(int index) {
@@ -78,6 +84,13 @@ public class ContactHelper extends BaseHelper {
     //app.goTo().goToContactPage();
   }
 
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
+    deleteSelectedContact();
+    conformContactDeletion();
+    //app.goTo().goToContactPage();
+  }
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -107,6 +120,7 @@ public class ContactHelper extends BaseHelper {
     }
     return contacts;
   }
+
 
 }
 
