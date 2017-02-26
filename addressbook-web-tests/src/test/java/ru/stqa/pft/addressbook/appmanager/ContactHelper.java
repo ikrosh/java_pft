@@ -41,6 +41,11 @@ public class ContactHelper extends BaseHelper {
     //}
   }
 
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
+
   public void selectContactById(int id) {
     //if (!wd.findElement(By.cssSelector("input[value='" + id +"']")).isSelected()) {
     wd.findElement(By.cssSelector("input[value='" + id +"']")).click();
