@@ -66,12 +66,31 @@ public class ContactHelper extends BaseHelper {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> rows = wd.findElements(By.name("entry"));
         for (WebElement element : rows){
-              String firstname = element.findElements(By.tagName("td")).get(2).getText();
-              String lastname = element.findElements(By.tagName("td")).get(1).getText();
-              ContactData contact = new ContactData(firstname, lastname, null,null,null,null);
+            String firstname = element.findElements(By.tagName("td")).get(2).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            String lastname = element.findElements(By.tagName("td")).get(1).getText();
+              ContactData contact = new ContactData(id, firstname, lastname, null,null,null,null);
               contacts.add(contact);
           }
         return contacts;
       }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
