@@ -7,9 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -89,24 +87,11 @@ public class ContactHelper extends BaseHelper {
             String firstname = element.findElements(By.tagName("td")).get(2).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             String lastname = element.findElements(By.tagName("td")).get(1).getText();
-              ContactData contact = new ContactData(id, firstname, lastname, null, null, null, null);
+              ContactData contact = new ContactData(id, firstname, lastname, null,null,null,null);
               contacts.add(contact);
           }
         return contacts;
       }
-
-  public Set<ContactData> all() {
-    Set<ContactData> contacts = new HashSet<ContactData>();
-    List<WebElement> rows = wd.findElements(By.name("entry"));
-    for (WebElement element : rows){
-      String firstname = element.findElements(By.tagName("td")).get(2).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      String lastname = element.findElements(By.tagName("td")).get(1).getText();
-      ContactData contact = new ContactData(id, firstname, lastname, null, null, null, null);
-      contacts.add(contact);
-    }
-    return contacts;
-  }
 
 }
 

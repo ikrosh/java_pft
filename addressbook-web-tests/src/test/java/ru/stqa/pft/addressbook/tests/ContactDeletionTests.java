@@ -7,7 +7,6 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -22,10 +21,10 @@ public class ContactDeletionTests extends TestBase {
   @Test
   public void testContactDeletion() {
 
-    Set<ContactData> before = app.contact().all();
+    List<ContactData> before = app.contact().list();
     int index = before.size() - 1;
     app.contact().delete(index);
-    Set<ContactData> after = app.contact().all();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() - 1);
     before.remove(index);
     Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(),c2.getId());
