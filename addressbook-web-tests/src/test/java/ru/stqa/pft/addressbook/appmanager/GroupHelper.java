@@ -27,23 +27,36 @@ public class GroupHelper extends BaseHelper {
     click(By.name("submit"));
   }
 
+  public void create(GroupData group) {
+    initGroupCreation();
+    fillGroupForm(group);
+    submitGroupCreation();
+    groupCache = null;
+    returnToGroupPage();
+  }
+
   public void modify(GroupData group) {
     selectGroupById(group.getId());
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
+    groupCache = null;
     returnToGroupPage();
   }
 
+  /*
   public void delete(int index) {
     selectGroup(index);
     deleteSelectedGroups();
+    //groupCache = null;
     returnToGroupPage();
   }
+  */
 
   public void delete(GroupData group) {
     selectGroupById(group.getId());
     deleteSelectedGroups();
+    groupCache = null;
     returnToGroupPage();
   }
 
@@ -75,12 +88,7 @@ public class GroupHelper extends BaseHelper {
   public void submitGroupModification() { click(By.name("update"));
   }
 
-  public void create(GroupData group) {
-    initGroupCreation();
-    fillGroupForm(group);
-    submitGroupCreation();
-    returnToGroupPage();
-  }
+
 
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
@@ -90,6 +98,7 @@ public class GroupHelper extends BaseHelper {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  /*
   public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
@@ -100,16 +109,23 @@ public class GroupHelper extends BaseHelper {
     }
     return groups;
   }
+  */
+
+  private Groups groupCache = null;
 
   public Groups all() {
-    Groups groups = new Groups();
+    if (groupCache != null) {
+      return new Groups(groupCache);
+    }
+
+    groupCache = new Groups();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      groups.add(new GroupData().withId(id).withName(name));
+      groupCache.add(new GroupData().withId(id).withName(name));
     }
-    return groups;
+    return new Groups(groupCache);
   }
 
 

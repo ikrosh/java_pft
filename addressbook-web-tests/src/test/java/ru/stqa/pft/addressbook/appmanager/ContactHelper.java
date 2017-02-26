@@ -73,26 +73,32 @@ public class ContactHelper extends BaseHelper {
     initContactCreation();
     fillContactForm(contactData);
     submitContactCreation();
+    contactCache = null;
   }
 
   public void modify(ContactData contact) {
     initContactModificationById(contact.getId());
     fillContactForm (contact);
     submitContactModification();
+    contactCache = null;
     //goTo().goToContactPage();
   }
 
+  /*
   public void delete(int index) {
+
     selectContact(index);
     deleteSelectedContact();
     conformContactDeletion();
     //app.goTo().goToContactPage();
   }
+  */
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContact();
     conformContactDeletion();
+    contactCache = null;
     //app.goTo().goToContactPage();
   }
 
@@ -100,6 +106,7 @@ public class ContactHelper extends BaseHelper {
     return isElementPresent(By.name("selected[]"));
   }
 
+  /*
   public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> rows = wd.findElements(By.name("entry"));
@@ -112,18 +119,24 @@ public class ContactHelper extends BaseHelper {
         }
         return contacts;
       }
+  */
+
+  private Contacts contactCache = null;
 
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement element : rows){
       String firstname = element.findElements(By.tagName("td")).get(2).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String lastname = element.findElements(By.tagName("td")).get(1).getText();
-      contacts.add(new ContactData().withId(id).withFirstname(firstname)
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname)
               .withLastname(lastname));
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
 
