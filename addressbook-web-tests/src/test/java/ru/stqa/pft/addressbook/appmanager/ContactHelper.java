@@ -27,6 +27,7 @@ public class ContactHelper extends BaseHelper {
     type(By.name("address"), contactData.getAddress());
     type(By.name("work"), contactData.getWorkPhone());
     type(By.name("mobile"), contactData.getMobilePhone());
+    attach(By.name("photo"),contactData.getPhoto());
   }
 
   public void initContactCreation() {
@@ -65,6 +66,17 @@ public class ContactHelper extends BaseHelper {
   public void deleteSelectedContact() {
     click(By.xpath("//input[@value='Delete']"));
     //click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+  }
+
+  public void viewContactDetailsById(int id) {
+    wd.findElement(By.cssSelector("a[href*='view.php?id="+id+"']")).click();
+  }
+
+  public ContactData contactDetails(ContactData contact) {
+    viewContactDetailsById(contact.getId());
+    String contactDetails = wd.findElement(By.cssSelector("div[id=content]")).getText();
+    wd.navigate().back();
+    return new ContactData().withContactDetails(contactDetails);
   }
 
   public void conformContactDeletion() {
